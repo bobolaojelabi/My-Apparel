@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>My Apparel-Dashboard</title>
+    {% endblock %}
+        <!--Google font-->
+        <link href="https://fonts.googleapis.com/css2?family=Abel&family=Roboto&display=swap" rel="stylesheet">
+
+
+        <!--bootstrap css-->
+	<link href="{{url_for('static',filename='bootstrap/css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+
+        <!--favicon-->
+	<link rel="icon" href="{{url_for('static',filename='images/favicon.ico')}}">
+
+        <!--font awesome-->
+    <link href="{{url_for('static',filename='fontawesome/css/all.css')}}" rel="stylesheet" type="text/css"> 
+    
+        <!--animate plugin-->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/animate.min.css')}}">
+    
+        <!--stylesheet link-->
+    <link rel="stylesheet" href="{{url_for('static',filename='style/admin.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='assets/bootstrap-icons/bootstrap-icons.css')}}">
+
+</head>
+<body>
+    
+  <!-- ======= Header ======= -->
+<div class="container-fluid">
+      <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+          <span class="logo d-flex align-items-center">
+            <img src="{{url_for('static',filename='images/log.png')}}" alt="logo">
+            <h4>Admin/Exculsive</h4>
+          </span>
+          <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+      </header><!-- End Header -->
+
+      <!-- ======= Sidebar ======= -->
+      <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+          <li class="nav-item mb-2">
+            <a class="nav-link collapsed" href="/admin/mydashboard/">
+              <i class="bi bi-grid text-warning me-3 fs-4"></i><span class="fs-4 fw-bold text-black">Dashboard</span>
+            </a>
+          </li><!-- End Dashboard Nav -->
+
+          <li class="nav-item mb-1">
+            <a class="nav-link collapsed" href="/admin/users/">
+              <i class="bi bi-people text-warning me-3 fs-4"></i><span class="fs-5 fw-bold text-black">Users</span>
+            </a>
+          </li><!--End customers nav-->
+
+          <li class="nav-item mb-1">
+            <a class="nav-link collapsed" href="/admin/orders/">
+                <i class="bi bi-cart3 text-warning me-3 fs-4"></i><span class="fs-5 fw-bold text-black">Orders</span>
+            </a>
+          </li><!-- End order Nav -->
+
+          <li class="nav-item mb-1">
+            <a class="nav-link collapsed" href="/admin/products/">
+                <i class="bi bi-archive text-warning me-3 fs-4"></i><span class="fs-5 fw-bold text-black">Products</span>
+            </a>
+          </li><!-- End products Nav -->
+
+          <li class="nav-item mb-1">
+            <a class="nav-link collapsed" href="/admin/category/">
+              <i class="bi bi-menu-button-wide text-warning me-3 fs-4"></i><span class="fs-5 fw-bold text-black">Categories</span>
+            </a>
+          </li><!-- End Components Nav -->
+
+          <li class="nav-item mb-1">
+            <a class="nav-link collapsed" href="/admin/measurements/">
+                <i class="fa-solid fa-tape text-warning me-3 fs-4"></i><span class="fs-5 fw-bold text-black">Measurements</span>
+            </a>
+          </li><!-- End Components Nav -->
+
+          <li class="nav-item mb-1">
+            <a class="nav-link collapsed" href="/admin/logout/">
+                <i class="bi bi-box-arrow-left text-warning me-3 fs-4"></i><span class="fs-5 fw-bold text-black">Signout</span>
+            </a>
+          </li><!-- End Components Nav -->
+
+
+        </ul>
+
+      </aside><!-- End Sidebar-->
+
+
+      <!--=== main page===-->
+      <div id="main">
+        <div class="row" style="margin-top: 70px;">
+          <div class="col">
+              <h1>Dashboard</h1>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/dashboard/" class="text-decoration-none text-dark">Home</a></li>
+                {% block nav%}
+                <li class="breadcrumb-item active">Dashboard</li>
+                {% endblock %}
+              </ol>
+            </nav>
+          </div>
+        </div><!-- endrow 1-->
+        {% block content%}
+        <div class="row">
+          <!-- Sales Card -->
+          <div class="col-xxl-4 col-md-4 pb-2">
+            <div class="sales-card info-card bg-white">
+              <div class="card-body m-3">
+                <h5 class="card-title fs-4">Sales <span class="fs-6 text-warning">| This Year</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 class="fs-2 fw-bolder" style="color: #012970;">{{allorder|count}}</h6>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!--end sale-->
+          <!-- Revenue Card-->
+          <div class="col-xxl-4 col-md-4 pb-2">
+            <div class="revenue-card info-card bg-white">
+              <div class="card-body m-3">
+                <h5 class="card-title fs-4">Revenue <span class="fs-6 text-warning">| This Year</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 class="fs-2 fw-bolder">&#8358 {{"{0:,.2f}".format(total)}}</h6>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!--end Revenue-->
+          <!--customer Card-->
+          <div class="col-xxl-4 col-md-4 pb-2">
+            <div class="customers-card info-card bg-white">
+              <div class="card-body m-3">
+                <h5 class="card-title fs-4">Customers <span class="fs-6 text-warning">| This Year</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6 class="fs-2 fw-bolder">{{customer|count}}</h6>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div><!--end customer-->
+        </div><!--Endrow 2-->
+
+        <!--orderhistory-->
+        <div class="row  mt-5 justify-content-around">
+          <div class="col-6 bg-white table-responsive mx-auto">
+            <a href="/admin/orders/" class=" fw-bolder fs-4 " style="color: rgb(109,59,125);">Orders</a>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>User</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for order in allorder %}
+                <tr>
+                  <th>{{ loop.index}}</th>
+                  <td>{{order.user_deets.user_fname}} {{order.user_deets.user_lname}}</td>
+                  <td>&#8358 {{"{0:,.2f}".format(order.order_amt)}}</td>
+                  <td>
+                    {% if order.order_status== 'completed': %}
+                          <span class="badge bg-success">{{order.order_status}}</span>
+                      {% elif order.order_status== 'pending': %}
+                          <span class="badge bg-secondary">{{order.order_status}}</span> 
+                        {% elif order.order_status== 'processing': %}
+                          <span class="badge bg-warning">{{order.order_status}}</span> 
+                      {% else: %}   
+                        <span class="badge bg-danger">{{order.order_status}}</span>                                
+                      {% endif %}
+                  </td>
+                </tr>
+                {% endfor%}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-4 bg-white table-responsive mx-auto">
+            <a href="/admin/users/" class=" fw-bolder fs-4" style="color: rgb(109,59,125);">Users</a>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>User</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for cust in customer %}
+                <tr>
+                  <th>{{ loop.index}}</th>
+                  <td>{{cust.user_fname}} {{cust.user_lname}}</td>
+                  <td>{{cust.user_email}}</td>
+                </tr>
+                {% endfor%}
+              </tbody>
+            </table>
+          </div>
+        </div><!--endrow 3-->
+        {% endblock%}
+      </div><!-- endmain-->
+</div>
+<!--modal-->
+{% block modal%}
+{% endblock %}
+  <!--=== JS== -->
+  <!--bootstrap js-->
+  <script src="{{url_for('static',filename='bootstrap/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+  <script src="{{url_for('static',filename='assets/jquery.min.js')}}"> </script>
+  {% block customjs%}
+  {% endblock %}
+  <script>
+  $(document).ready(function(){
+    $('.toggle-sidebar-btn').click(function(){
+    $('body').toggleClass('toggle-sidebar')
+  })
+
+
+  //  const main = $('#main');
+  // if (main) {
+  //   setTimeout( 200);
+  // }
+
+  })
+  
+  </script>
+</body>
+</html>

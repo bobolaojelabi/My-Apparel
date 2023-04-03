@@ -1,0 +1,18 @@
+{% extends "user/layout.html" %}
+
+{% block title%}
+<title>My Apparel-Error 404</title>
+{% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 130px;">
+    <div class="row align-items-center justify-content-around  mb-5">
+        <div class="col-8 text-center mb-3">
+            <img src="{{url_for('static',filename='images/error404.jpg')}}" alt="error">
+        </div>
+        <div class="col-6 mb-3">
+            <p>{{error}}</p>
+        </div>
+        <a href="" class="btn btn-outline-warning col-10">Reload</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,179 @@
+body{
+  background:  rgb(249,239,251);
+  font-family: 'Roboto', sans-serif;
+}
+
+.bordBottom{
+  border-bottom: 1px solid rgb(143,59,158)
+}
+.mybtn{
+  border: 1px solid rgb(235,185,223);
+}
+.mybtn:hover{
+  background: linear-gradient(to right, rgb(109,59,125), rgb(255,133,253));
+  color: #fff;
+  
+}
+h1{
+  color: rgb(184,0,181);
+}
+h2,h4,h5{
+  color: rgb(109,59,125);
+  font-weight: bold;
+}
+
+
+
+/*# Header*/
+.logo {
+    line-height: 1;
+  }
+  
+  @media (min-width: 1200px) {
+    .logo {
+      width: 280px;
+    }
+  }
+  
+  .logo img {
+    max-height: 26px;
+    margin-right: 6px;
+  }
+  
+  .logo span {
+    font-size: 26px;
+    font-weight: 700;
+    color: #012970;
+    font-family: "Nunito", sans-serif;
+  }
+  
+  .header {
+    transition: all 0.5s;
+    z-index: 997;
+    height: 60px;
+    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+    background-color: #fff;
+    padding-left: 20px;
+    /* Toggle Sidebar Button */
+
+  }
+  
+  .header .toggle-sidebar-btn {
+    font-size: 32px;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #012970;
+  }
+  
+
+
+  /*--------------------------------------------------------------
+  # Sidebar
+  --------------------------------------------------------------*/
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 996;
+    transition: all 0.3s;
+    padding: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aab7cf transparent;
+    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+    background-color: #fff;
+  }
+  
+  @media (max-width: 1199px) {
+    .sidebar {
+      left: -300px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+  
+    #main,
+    #footer {
+      margin-left: 300px;
+    }
+  }
+  
+  @media (max-width: 1199px) {
+    .toggle-sidebar .sidebar {
+      left: 0;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+  
+    .toggle-sidebar #main,
+    .toggle-sidebar #footer {
+      margin-left: 0;
+    }
+  
+    .toggle-sidebar .sidebar {
+      left: -300px;
+    }
+  }
+  
+  .sidebar-nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .sidebar-nav li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    transition: 0.3;
+    background: #f6f9ff;
+    padding: 10px 15px;
+    border-radius: 4px;
+  }
+  
+
+  .sidebar-nav .nav-link.collapsed {
+    background: #fff;
+  }
+  
+  .sidebar-nav .nav-link:hover {
+    background: #f5f2ea;
+  }
+
+
+  /* cards */
+  .card-icon {
+    font-size: 32px;
+    line-height: 0;
+    width: 64px;
+    height: 64px;
+  
+  }
+  
+  .sales-card .card-icon {
+    color: #4154f1;
+    background: #f6f6fe;
+  }
+  
+  .revenue-card .card-icon {
+    color: #2eca6a;
+    background: #e0f8e9;
+  }
+  
+  .customers-card .card-icon {
+    color: #ff771d;
+    background: #ffecdf;
+  }
+  .info-card h6 {
+    color: #012970;
+
+  }
+  

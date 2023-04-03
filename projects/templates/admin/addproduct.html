@@ -1,0 +1,50 @@
+{% extends 'admin/dashboard.html'%}
+{% block nav%}
+<li class="breadcrumb-item active"><a href="/admin/products/" class="text-decoration-none text-dark">Products</a></li>
+<li class="breadcrumb-item active">Add</li>
+{% endblock %}
+{% block content%}
+<div class="row my-5">
+    <div class="col-md-8 bg-white p-5 mx-auto">
+        <form class="row g-3" method="post" action="" enctype="multipart/form-data">
+          <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+            <div class="col-12">
+              <label for="pname" class="form-label"><b>Product Name</b></label>
+              <input type="text2" class="form-control" id="pname" name="name">
+            </div>
+            <div class="col-md-6">
+              <label for="img1" class="form-label"><b>Images 1</b></label>
+              <input type="file" class="form-control" id="img1" name="img">
+            </div>
+            <div class="col-md-6">
+                <label for="img2" class="form-label"><b>Images 2</b></label>
+                <input type="file" class="form-control" id="img2" name="img">
+            </div>
+            <div class="col-md-6">
+                <label for="img3" class="form-label"><b>Images 3</b></label>
+                <input type="file" class="form-control" id="img3" name="img">
+            </div>
+            <div class="col-md-6">
+                <label for="img4" class="form-label"><b>Images 4</b></label>
+                <input type="file" class="form-control" id="img4" name="img">
+            </div>
+            <div class="col-md-4">
+              <label for="cat" class="form-label"><b>Category</b></label>
+              <select id="cat" class="form-select" name="cat">
+                <option selected>Choose...</option>
+                {% for d in deets %}
+                <option value="{{ d.category_id }}">{{ d.category_name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label for="inputZip" class="form-label"><b>Price</b></label>
+              <input type="number" class="form-control" id="inputZip" name="price">
+            </div>
+            <div class="col-12 mb-3">
+              <button type="submit" class="btn btn-outline-warning col-2">SUBMIT</button>
+            </div>
+          </form>
+    </div>
+</div>
+{% endblock %}

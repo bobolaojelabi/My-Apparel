@@ -1,0 +1,30 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-order</title>
+{% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 70px;">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:650px">
+      <div style="background-color:rgba(0,0,0,0.8); height:650px">
+        <div class="row justify-content-end mt-5">
+            <div class="col-md-7">
+                <a href="/myapparel/order-history/" class="btn mybtn text-white"> Your Order History</a>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-9 mt-5 backgrounddiv">
+                <h3 class="text-center text-muted mb-5 fw-bold"><b>Order Confirmed</b></h3>
+                {{query}}
+                <p>Hello<b> {{deets.user_fname}} {{deets.user_lname}}!!</b></p>
+                <p>Thank you for shopping with us</p>
+                <p>Thiis is to confrimed that your payment is <b>successful</b> and your Order with <b>Reference No: {{order_deets.order_refno}}</b> has been placed.</p>
+                <p><b>N.B:</b> Keep your Reference No, as it is important to track your Order and resolve Disput if any.</p>
+                <p>Order Date: <b> {{formatdate}}</b></p>
+                <p>Delivery Date: Expert your Order within Two week</p>
+            </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+{% endblock %}

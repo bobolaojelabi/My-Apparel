@@ -1,0 +1,132 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-order</title>
+{% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 70px;">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:650px">
+      <div style="background-color:rgba(0,0,0,0.9); height:650px">
+        <div class="row justify-content-end mt-5">
+            <div class="col-md-7">
+                <a href="/myapparel/shop/" class="btn mybtn text-white">SHOP MORE</a>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5 table-responsive-md">
+          <div class="col-md-8 rounded table-responsive-md">
+            <table class="table table-bordered backgrounddiv">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Receive Name</th>
+                  <th>Amount</th>
+                  <th>Reference No</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Payment Status</th>
+                  <th>Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data,pay in order: %}
+                    <tr>
+                    <th>{{ loop.index}}</th>
+                    <td>{{ data.order_name}}</td>
+                    <td>&#8358 {{"{0:,.2f}".format(data.order_amt)}}</td>
+                    <td>{{data.order_refno}}</td>
+                    <td>
+                      {% if data.order_status== 'completed': %}
+                          <span class="badge bg-success">{{ data.order_status}}</span>
+                      {% elif data.order_status== 'processing': %}
+                          <span class="badge bg-warning">{{ data.order_status}}</span> 
+                        {% elif data.order_status== 'pending': %}
+                          <span class="badge bg-secondary">{{ data.order_status}}</span> 
+                      {% else: %}   
+                        <span class="badge bg-danger">{{ data.order_status}}</span>                                
+                      {% endif %}
+                      </td>
+                    <td>{{ data.order_date}}</td>
+                    <td>{{pay.pay_status}}</td>
+                    <td><a href="" data-bs-toggle="modal" data-bs-target="#history" data-user={{data.order_id}}>details</a></td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div><!--container closing-->
+{% endblock %}
+{% block modal%}
+    <!-- Modal -->
+<div class="modal fade" id="history" tabindex="-1" aria-labelledby="historyLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historyLabel">
+          <h5>Order Reference No:<span id="ref"></span></h5>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody id="tablebody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block customjs %}
+<script type="text/javascript"> 
+  $(document).ready(function(){
+
+  //triggered when modal is about to be shown
+  $('#history').on('show.bs.modal', function(e) {
+  
+      //get data-id(order_id) attribute of the clicked element
+      var orderid = $(e.relatedTarget).data('user');
+      var data2send ={"order":orderid}
+      //make an ajax call to receive an array based on orderid, that is you can now pass the orderid to an ajax. let's say the ajax returns t     
+      $.ajax({
+        url:"/history",
+        data:data2send,
+        success:function(rsp){
+           var rows = '';
+             $.each(rsp, function(index, item) {
+               rows += '<tr>' +
+                 '<td>' + item.name + '</td>' +
+                 '<td>' + item.price + '</td>' +
+                 '<td>' + item.qty + '</td>' +
+                 '</tr>';
+                 $('#ref').text(item.refno);
+             });
+             $('#tablebody').html(rows);
+        },
+        error:function(e){
+          console.log(e)
+        }
+      })
+      //$(e.currentTarget).find('.modal-body').html(t); //displays t inside the div with class modal-body
+      //$(e.currentTarget).find('.modal-title').html("Details for User"+ userid); //displays this in the div with class modal-title
+  });
+  
+    })//document closing
+  </script>
+{% endblock %}

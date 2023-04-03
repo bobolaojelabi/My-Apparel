@@ -1,0 +1,76 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-Signup</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:700px">
+        <div style="background-color:rgba(0,0,0,0.9); height:700px">
+
+
+            <div class="row justify-content-center" style="margin-top: 100px;">
+                <div class="col-md-3 loginback text-center rounded">
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-7 mt-md-5">
+                            <img src="{{url_for('static',filename='images/mylog.png')}}" class="img-thumbnail rounded-circle" alt="logo">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center text-center">
+                        <div class="col-md-10">
+                            <p><b><i>STYLE is a way to say WHO YOU ARE without having to SPEAK.</i></b></p>
+                        </div>
+                        {% with m= get_flashed_messages(with_categories=True)%}
+                            {% if m %}
+                                {% for cat,msg in m %}
+                                    {% if cat == "error": %}
+                                        <div class='alert alert-danger'> {{ msg|safe }}</div>
+                                    {% else: %}
+                                        <div class='alert alert-success'> {{ msg|safe }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif%}
+                        {% endwith%}
+                    </div>
+                </div>
+                <div class="col-md-3 login rounded bg-light" style="box-shadow: 4px 4px rgb(255,206,10);">
+
+                        <h4 class="text-center mt-4 fw-bold">CREATE YOUR ACCOUNT!</h4>
+                            <hr>
+                            <form method="post" action="">
+                                <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+                                <div class="row mt-5 mb-3">
+                                    <div class="col-md form-floating mb-3">
+                                        <input type="text" class="form-control" name="fname" id="fname" placeholder="fname">
+                                        <label for="fname">First Name</label>
+                                    </div>
+                                    <div class="col-md form-floating">
+                                        <input type="text" name="sname" id="sname" placeholder="Surname" class="form-control">
+                                        <label for="sname">Surname</label>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+                                    <label for="email">Email address</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password">
+                                    <label for="pwd">Password</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" name="cpwd" id="cpwd" placeholder="ConPassword">
+                                    <label for="cpwd">Confrim Password</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="phonenumber">
+                                    <label for="phone">Phone Number</label>
+                                </div>
+                                <button type="submit" class="btn mybtn col-md-8 mb-3">SIGN UP</button>
+                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

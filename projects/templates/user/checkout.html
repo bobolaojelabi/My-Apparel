@@ -1,0 +1,124 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-Checkout</title>
+{% endblock %}
+
+{% block content%}
+<div class="container-fluid mt-5">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:200px">
+      <div style="background-color:rgba(0,0,0,0.9); height:200px">
+          <div class="px-4 py-5 my-5 text-center text-warning">
+              <h1 class="display-5 fw-bold"><i>My Apparel/checkout</i></h1>
+             
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+  <div class="container mt-5">
+    <div class="row g-md-5">
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3 fw-bold">Billing address </h4>
+            <span>
+                {% with m= get_flashed_messages(with_categories=True)%}
+                {% if m %}
+                    {% for cat,msg in m %}
+                        {% if cat == "error": %}
+                            <div class='text-danger'> {{ msg|safe }}.....</div>
+                        {% else: %}
+                            <div class='text-success'> {{ msg|safe }}.....</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif%}
+            {% endwith%}
+            </span>
+         
+          <form method="post" action="">
+            <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="rname" class="form-label"><b>Receive name</b></label>
+                <input type="text" class="form-control" id="rname" name="rname" value="{{deets.user_fname}} {{deets.user_lname}}">
+              </div>
+
+              <div class="col-sm-6">
+                <label for="phone" class="form-label"><b>Phone Number</b></label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{deets.user_phone}}">
+              </div>
+  
+              <div class="col-12">
+                <label for="email" class="form-label"><b>Your Email</b></label>
+                <input type="text" class="form-control" id="email" name="email" value="{{deets.user_email}}" disabled>
+              </div>
+  
+              <div class="col-12">
+                <label for="address" class="form-label"><b>Address</b></label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address">
+              </div>
+              <div class="col-md-5">
+                <label for="city" class="form-label"><b>City</b></label>
+                <input type="text" class="form-control" id="city" name="city">
+              </div>
+  
+              <div class="col-md-4">
+                <label for="state" class="form-label"><b>State</b></label>
+                <select class="form-select" id="state" name="state">
+                  <option value="">Choose...</option>
+                  {% for x in state%}
+                  <option value="{{x.state_id}}">{{x.state_name}}</option>
+                  {% endfor%}
+                </select>
+              </div>
+              <input type="hidden" value="{{grandtotal}}" name="grandtotal">
+            </div>
+  
+            <hr class="my-4">
+  
+            <button class="w-100 btn mybtn btn-lg mb-4" type="submit">Continue to checkout</button>
+          </form>
+        </div>
+        <div class="col-md-5 col-lg-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+              <span class="fw-bold">Your cart</span>
+              <span class="badge rounded-pill" style="background-color: rgb(109,59,125);">{{mycart|count}}</span>
+            </h4>
+            <ul class="list-group mb-3">
+                {% for item in mycart%}
+              <li class="list-group-item d-flex justify-content-between">
+                <div class="col-2">
+                    <p><img src="{{url_for('static',filename='/uploads/'+ item.cart_pix)}}" class="rounded-circle" alt="..." width="70px" height="70px"></p>
+                </div>
+                <div class="col-4 pt-3 ps-2">
+                  <h6 class="my-0">{{item.the_product.product_name}}</h6>
+                </div>
+                <div class="col-4 pt-3">
+                    <span class="text-muted">&#8358 {{"{0:,.2f}".format(item.cart_total)}}</span>
+                </div>
+                
+              </li>
+              {% endfor%}
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0"><b><i>SubTotal</i></b></h6>
+                </div>
+                <span class="text-muted">&#8358 {{"{0:,.2f}".format(subtotal)}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0"><b>Shipping Fee</b></h6>
+                </div>
+                <span class="text-muted">&#8358 {{"{0:,.2f}".format(shipping)}}</span>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between">
+                <span><b><i>Total</i></b></span>
+                <strong>&#8358 {{"{0:,.2f}".format(grandtotal)}}</strong>
+              </li>
+            </ul>
+    
+            
+          </div>
+      </div>
+  </div>
+{% endblock%}

@@ -1,0 +1,95 @@
+{% extends "user/layout.html" %}
+
+{% block title%}
+<title>My Apparel-Home</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="row" style="background-image:url('/static/images/back2.jpg'); background-image:cover; height:500px">
+    <div style="background-color:rgba(0,0,0,0.8); height:500px">
+        <div class="px-4 py-5 my-5 text-center text-warning">
+            <img class="d-block mx-auto mb-2 mt-5" src="{{url_for('static',filename='images/logo.png')}}" alt="" width="80" height="80">
+            <h1 class="display-5 fw-bold text-warning"><i>My Apparel</i></h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4 text-warning" >
+                  Bringing us closer to you...
+                </p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn btn-outline-warning btn-lg px-4 gap-3" data-bs-toggle="modal" data-bs-target="#apparel">Read More</button>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="b-example-divider"></div>
+
+<div class="container col-xxl-8 px-4 py-5">
+<div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+  <div class="col-10 col-sm-8 col-lg-6">
+    <img src="{{url_for('static',filename='images/pro6.jpg')}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+  </div>
+  <div class="col-lg-6">
+    <h2 class="display-5 fw-bold lh-1 mb-3"><span class="bordBottom">ABOUT US</span></h2>
+    <p class="lead">
+        some stuff about exclusive 06
+
+    </p>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+      <button type="button" class="btn mybtn btn-lg px-4 me-md-2">Read more</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="bordBottom mb-4"></div>
+
+<div class="container-fluid">
+  <div class="row justify-content-around">
+    <div class="col-md-5 text-start">
+      <h2 class="mb-4"><span class="bordBottom">Vision & Mission</span></h2>
+      <h4><span class="bordBottom">Vision</span></h4>
+      <p>Embodiment of execllence, elegance and exclusiveness into each piece we make to implies trust and comfort to all our customers</p>
+
+      <h4><span class="bordBottom">Mission</span></h4>
+        <ul type="square">
+          <li>Prioritize customer satisfaction by offering customized total textile solutions, exquisite craftsmanship and tailoring excellence to our valued patrons.</li>
+          <li>Innovation and adaptation of best practices in fabric industry to always offer fresh and trendy designs.</li>
+          <li>Commitment to deliverying the best which in-turns make you a Star </li>
+        </ul>
+      
+    </div>
+    <div class="col-md-3 text-start">
+      <h2 class="mb-4"><span class="bordBottom">value</span></h2>
+      <ul type="square">
+        <li><b>Innovation:</b> Being creative and bringing about new designs</li>
+        <li><b>Trust:</b> Earning the trust and respect of all our customers through our unwavering commitment to excellence.</li>
+        <li><b>Excellence:</b> Promoting an attitude of excellence in all aspects of quality - even to the final suit.</li>
+        <li><b>Elegance:</b> Exquisite craftsmanship by our designer renders elegance and a classic finesse to our range.</li>
+      </ul>
+    </div>
+  </div>
+
+
+{% endblock %}
+{% block modal%}
+<!-- Modal -->
+<div class="modal fade" id="apparel" tabindex="-1" aria-labelledby="apparelLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="apparelLabel"><i>My Apparel</i></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>My Apparel is an app built by exclusive 06 a Fashion Designer who through this app brings many of its services closer to both its existing and new customers.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}

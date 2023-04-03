@@ -1,0 +1,80 @@
+{% extends 'admin/dashboard.html'%}
+{% block nav%}
+<li class="breadcrumb-item active">Measurements</li>
+{% endblock %}
+{% block content%}
+<div class="row my-5">
+    <div class="col-md-10 p-4 mx-auto table-responsive bg-white">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Measurements</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data%}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ d.the_user.user_fname}} {{ d.the_user.user_lname}}</td>
+                    <td>{{ d.the_user.user_phone}}</td>
+                    <td><a href="" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-user={{d.measure_userid}}>details</a></td>
+                    <td>
+                        <a href="{{url_for('delete_measurement',id=d.measure_id)}}" class="btn btn-outline-danger" onclick="return confirm('Do you really want to delete')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+{% endblock %}
+{% block modal %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Measurements</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-5">
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block customjs%}
+<script type="text/javascript"> 
+    $(document).ready(function(){
+         //triggered when modal is about to be shown
+         $('#exampleModal').on('show.bs.modal', function(e) {
+  var userid = $(e.relatedTarget).data('user');//get data-id(product_id) attribute of the clicked element
+  var data2send ={"prop":userid}
+  //make an ajax call to receive an array based on userid, that is you can now pass the userid to an ajax. let's say the ajax returns t     
+  $.ajax({
+    url:"/my_list",
+    data:data2send,
+    success:function(rsp){
+      $(e.currentTarget).find('.modal-body').html(rsp); //$(e.currentTarget).find('.modal-body').html(t); //displays t inside the div with class modal-body
+    },
+    error:function(e){
+      console.log(e)
+    }
+  })
+
+
+  //$(e.currentTarget).find('.modal-title').html("Details for User"+ userid); //displays this in the div with class modal-titl
+
+
+});
+    })
+</script>
+{% endblock %}

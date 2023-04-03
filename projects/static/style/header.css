@@ -1,0 +1,94 @@
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.bi {
+    fill: currentColor;
+  }
+  
+  .text-small {
+    font-size: 85%;
+  }
+  
+  .dropdown-toggle {
+    outline: 0;
+  }
+
+  main > .container {
+    padding: 60px 15px 0;
+  }
+
+  .b-example-divider {
+    height: 1rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+
+  .nav-item a span:hover {
+    color: black;
+    box-shadow: 2px 2px rgb(255,206,10);
+  }
+.shop-card{
+    box-shadow: 4px 4px rgb(227, 161, 17);
+    width: 17rem;
+}
+
+.top{
+    margin-top: 150px;
+}
+iframe{
+    box-shadow: 4px 4px rgba(226, 226, 226, 0.584);
+}
+
+.box3{
+    width: 100px;
+    height: 100px;
+}
+.bi {
+  vertical-align: -.125em;
+  pointer-events: none;
+  fill: currentColor;
+}
+@media (max-width:768px){
+  iframe{
+      width: 200px;
+      height: 200px;
+  }
+  .shop-card{
+    width: 15rem;
+}
+}
+
+.measureinput{
+  border: 1px solid rgb(235,185,223);
+}
+.bordBottom{
+  border-bottom: 1px solid rgb(255,196,0)
+}
+.mybtn{
+  border: 1px solid rgb(255,206,10);
+}
+.mybtn:hover{
+  background: linear-gradient(to right, rgb(255,206,10), rgb(255, 235, 153));
+  
+}
+
+.backgrounddiv{
+  background-color: rgb(235, 233, 229);
+}
+
+h1{
+  color: rgb(255,196,0);
+  font-size: large;
+}
+h2,h4,h5{
+  color: rgb(255,196,0);
+  font-weight: bold;
+}
+
+.loginback{
+  background-color: rgb(255,206,10);
+  color: #fff;
+  box-shadow: 4px 4px rgb(249,239,251);
+}

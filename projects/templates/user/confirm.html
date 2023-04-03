@@ -1,0 +1,78 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-Confirm-order</title>
+{% endblock %}
+
+{% block content%}
+<div class="container-fluid mt-5">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:200px">
+      <div style="background-color:rgba(0,0,0,0.9); height:200px">
+          <div class="px-4 py-5 my-5 text-center text-warning">
+              <h1 class="display-5 fw-bold"><i>My Apparel/confirm-order</i></h1>
+             
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+  <div class="container">
+    <div class="row justify-content-center mt-4 mb-5">
+        <div class="col-sm-12 col-md-5 mt-4 p-3 backgrounddiv">
+            <h4 class="text-danger">CONFIRM YOUR ORDER DETAILS</h4>
+            <p>
+                {% with m=get_flashed_messages(with_categories=True) %}
+                {% if m: %}
+                    {% for cat,msg in m: %}
+                        {% if cat == "failed": %}
+                            <div class='alert alert-danger'> {{ msg|safe }}</div>
+                        {% else: %}
+                            <div class='alert alert-success'> {{ msg|safe }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </p>
+            <div class="row mb-3">
+                <div class="col-4"><h5><b>Reference no:</h5></b></div>
+                <div class="col-4"><p>{{refno}}</p></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4"><h5><b>Receiver Name:</b></h5></div>
+                <div class="col-4"><p>{{myorder.order_name}}</p></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4"><h5><b>Email:</h5></b></div>
+                <div class="col-5"><p>{{myorder.order_email}}</p></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4"><h5><b>Phone:</b></h5></div>
+                <div class="col-4"><p>{{myorder.order_phone}}</p></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4"><h5><b>Address:</b></h5></div>
+                <div class="col-4"><p>{{myorder.order_shipaddress}}</p></div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4"><h5><b>City:</b></h5></div>
+                <div class="col-4"><p>{{myorder.order_shipcity}}</p></div>
+            </div>
+            <div class="row mb-3 bordBottom">
+                <div class="col-4"><h5><b>State:</b></h5></div>
+                <div class="col-4"><p>{{myorder.state_deets.state_name}}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-4"><h4><b>Total:</b></h4></div>
+                <div class="col-4"><p>&#8358 {{"{0:,.2f}".format(myorder.order_amt)}}</p></div>
+            </div>
+            <form method="post" action="/confirm/checkout/">
+                <div class="row mt-3 text-center">
+                    <input type="hidden" id="csrf_token" name="csrf_token" value="{{csrf_token()}}">
+                    <button class="btn mybtn">PROCEED WITH PAYMENT</button>
+                    <a href="/myapparel/checkout/">want to make a change?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  {% endblock %}

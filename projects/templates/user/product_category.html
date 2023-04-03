@@ -1,0 +1,185 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-Shop</title>
+{% endblock %}
+
+{% block content%}
+<div class="container-fluid mt-5">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:400px">
+      <div style="background-color:rgba(0,0,0,0.9); height:400px">
+          <div class="px-4 py-5 my-5 text-center text-warning">
+              <h1 class="display-5 fw-bold"><i>My Apparel/shop</i></h1>
+             
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+  <div class="container-fluid">
+    <div class="row g-2 justify-content-between">
+
+      
+        <div class="col-md-2 backgrounddiv">
+          <div class="position-sticky" style="top: 2rem;">
+            <div class="p-4 mb-3 bg-light rounded fst-italic">
+              
+              <p class="mb-0 ">"Fashion is the armor to survive the reality of everyday life." —Bill Cunningham</p>
+            </div>
+    
+            <!--category dropdown-->
+            <div class="btn-group p-4">
+              <button type="button" class="btn mybtn">Categories</button>
+              <button type="button" class="btn mybtn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                {% for q in caty%}
+                <li><a class="dropdown-item" href="{{url_for('category_page', id=q.category_id)}}">{{q.category_name}}</a></li>
+                <li><hr class="dropdown-divider"></li>
+                {% endfor %}
+              </ul>
+            </div>
+
+    
+            <div class="p-4 mt-5">
+              <h4 class="fst-italic">social</h4>
+              <p>check us out also on:</p>
+              <ol class="list-unstyled">
+                <li><a href="https://wa.me/2347032047442"><i class="bi bi-whatsapp text-success me-2"></i>Whatsapp</a></li>
+                <li><a href="instagram.com/exclusive0.6"><i class="bi bi-instagram text-danger me-2"></i>Instagram</a></li>
+                <li><a href="#"><i class="bi bi-twitter me-2" style="color: skyblue;"></i>Twitter</a></li>
+                <li><a href="#"><i class="bi bi-facebook text-primary me-2"></i>Facebook</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-9 ms-3">
+            <div class="container-fluid mt-5">
+                <div class="row mt-3 justify-content-around">
+                    {% for p in category_deets%}
+                        <div class="card p-0 mb-3" style="width: 18rem;">
+                        {%for c,d in product%}
+                        {% if d==p.product_id%}
+                        <img src="{{url_for('static',filename='/uploads/'+ c)}}" class="card-img-top rounded-3" alt="..." height="190px">
+                        {% endif%}
+                        {% endfor %}
+                        <div class="card-body">
+                            <h5><b>{{p.product_name}}</b> </h5>
+                            <div class="row">
+                              <div class="text-muted col-6">&#8358 {{"{0:,.2f}".format(p.product_price)}}</div>
+                              <div class="col-6 text-end"><a href="" class="text-muted" data-bs-toggle="modal" data-bs-target="#exampleModal" data-user={{p.product_id}}>view more</a></div>
+                            </div>
+                            <hr class="bordBottom">
+                            <div class="row">
+                                <div class="col-6"> 
+                                    <div class="product">
+                                        <button class="qty_minus rounded bg-white border-white" data-product-id="{{ p.product_id }}"><span class="fa fa-minus"></span></button>
+                                        <input type="text" disabled id="qty_input_{{p.product_id }}" name="qty_input_{{ p.product_id }}" value="1" min="1" max="10" class="col-4">
+                                        <button class="qty_plus rounded bg-white border-white" data-product-id="{{ p.product_id}}"><span class="fa fa-plus"></span></button>
+                                      </div>
+                                </div>
+                            </div>
+                             <button class="btn mybtn my-2 mt-3 col-10 cart" data-product-id="{{p.product_id}}">Add to cart</button>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      
+
+                </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+  </div>
+  {% endblock %}  {% block modal%}
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-xl">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel"></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row mt-3">
+        <div class="col-md-10 " id="pix">
+           
+        </div>
+    </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+  {% block customjs %}
+  <script>
+   $(document).ready(function() {
+    $('.qty_plus').click(function() {
+        var product_id = $(this).data('product-id');
+        var current_qty = parseInt($('#qty_input_' + product_id).val());
+        var new_qty = current_qty + 1;
+        $('#qty_input_' + product_id).val(new_qty);
+        })
+  
+    $('.qty_minus').click(function() {
+        var product_id = $(this).data('product-id');
+        var current_qty = parseInt($('#qty_input_' + product_id).val());
+        if (current_qty > 1) {
+            var new_qty = current_qty - 1;
+            $('#qty_input_' + product_id).val(new_qty);
+        }
+        });
+
+    $('.cart').click(function(){
+        var product_id = $(this).data('product-id');
+        var qty =   parseInt($('#qty_input_' + product_id).val());
+        alert(qty)
+        alert(product_id)
+        data2send={'productid':product_id,'quantity':qty,}
+        //making ajax call
+        $.ajax({
+            url:"/addtocart/",
+            data:data2send,
+            type:"GET",
+            dataType:"text",
+            success:function(rsp){
+                console.log(rsp)
+            },
+            error:function(e){
+                console.log(e)
+            }
+        })
+    });
+
+
+          //triggered when modal is about to be shown for view more
+  $('#exampleModal').on('show.bs.modal', function(e) {
+      var productid = $(e.relatedTarget).data('user');
+      var data2send ={"prop":productid}    
+      $.ajax({
+        url:"/image",
+        data:data2send,
+        success:function(rsp){
+          $(e.currentTarget).find('#pix').html(rsp); //displays t inside the div with class modal-body
+        },
+        error:function(e){
+          console.log(e)
+        }
+      })
+    });
+  
+
+
+    });
+
+  </script>
+  {% endblock %}

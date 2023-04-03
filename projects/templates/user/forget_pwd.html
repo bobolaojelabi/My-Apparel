@@ -1,0 +1,71 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-Login</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:650px">
+        <div style="background-color:rgba(0,0,0,0.9); height:650px">
+
+
+            <div class="row justify-content-center" style="margin-top: 120px;">
+                <div class="col-md-3 login bg-warning text-center" style="box-shadow: 4px 4px rgb(219, 163, 10);;">
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-7">
+                            <img src="{{url_for('static',filename='images/mylog.png')}}" class="img-thumbnail rounded-circle" alt="logo">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center text-center">
+                        <div class="col-md-10">
+                            <p><b><i>STYLE is a way to say WHO YOU ARE without having to SPEAK.</i></b></p>
+                        </div>
+                        {% with m=get_flashed_messages(with_categories=True) %}
+                        {% if m: %}
+                          {% for cat,msg in m: %}
+                                  <div class='alert alert-danger'> {{ msg|safe }}</div>
+                          {% endfor %}
+                        {% endif %}
+                      {% endwith %}
+                    </div>
+                </div>
+                <div class="col-md-3 login" style="background-color: aliceblue; box-shadow: 4px 4px rgb(219, 163, 10);;">
+
+                        <h3 class="text-center mt-4">Change Password</h3>
+                            <form method="post" action="/user/forget_password/">
+                                <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+                                <div class="row mb-3">
+                                    <label for="email" class="col-md-4 col-lg-3 col-form-label"><b>Email:</b></label>
+                                    <div class="col-md-8 col-lg-9">
+                                      <input name="email" type="email" class="form-control" id="email">
+                                    </div>
+                                  </div>
+                
+                                  <div class="row mb-3">
+                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label"><b>New Password:</b></label>
+                                    <div class="col-md-8 col-lg-9">
+                                      <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                    </div>
+                                  </div>
+                
+                                  <div class="row mb-3">
+                                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label"><b>Re-enter New Password:</b></label>
+                                    <div class="col-md-8 col-lg-9">
+                                      <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                    </div>
+                                  </div>
+                
+                                  <div class="text-center mb-3">
+                                    <button type="submit" class="btn btn-outline-warning">Change Password</button>
+                                  </div>
+                                  <div class="mb-3">
+                                    <a href="{{url_for('login')}} " class="text-decoration-none text-warning"><i>back to login</i></a>
+                                </div>
+                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

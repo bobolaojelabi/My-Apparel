@@ -1,0 +1,132 @@
+{% extends "user/layout.html" %}
+{% block title%}
+<title>My Apparel-Gallery</title>
+{% endblock%}
+{% block content %}
+<div class="position-relative overflow-hidden m-3 text-center text-warning bg-light">
+    <div class="row" style="background-image:url('/static/images/back2.jpg'); background-image:cover; height:500px">
+        <div style="background-color:rgba(0,0,0,0.8); height:500px">
+    <div class="col-md-6 p-md-5 mx-auto mt-5">
+      <h1 class="display-4 fw-bold mt-5"><i>My Apparel/Gallery</i></h1>
+      <p class="lead text-warning">We don't design clothes, We design dreams.</p>
+    </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row bordBottom">
+        <div class="col-md text-center">
+            <h2>GALLERY</h2>
+            <P class="text-warning"><i>Styling YOU gives us that joy!!</i></P>
+        
+        </div>
+    </div>
+
+    <div class="row featurette my-5 ">
+        <div class="col-md-7">
+            
+            <div class="row justify-content-center mt-5">
+                <div class="col-3">
+                    <img src="{{url_for('static',filename='images/gallery22.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+                </div>
+                <div class="col-3">
+                    <img src="{{url_for('static',filename='images/gallery77.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+                </div>
+                <div class="col-3">
+                    <img src="{{url_for('static',filename='images/gallery66.png')}}" class="img-fluid rounded-circle img-thumbnail">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <img src="{{url_for('static',filename='images/pro133.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+                </div>
+                <div class="col-3">
+                    <img src="{{url_for('static',filename='images/gallery55.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+                </div>
+                <div class="col-3">
+                    <img src="{{url_for('static',filename='images/gallery44.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+                </div>
+            </div>
+        </div>
+      <div class="col-md-5">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{url_for('static',filename='images/pro33.jpg')}}" class="d-block w-100" alt="pic">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{url_for('static',filename='images/gallery22.jpg')}}" class="d-block w-100" alt="pic">
+                </div>
+                <div class="carousel-item">
+                     <img src="{{url_for('static',filename='images/pro133.jpg')}}" class="d-block w-100" alt="pic">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bordBottom"></div>
+
+    <div class="row featurette my-5">
+      <div class="col-md-7 order-md-2 mt-5">
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <img src="{{url_for('static',filename='images/gallery99.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+            </div>
+            <div class="col-3">
+                <img src="{{url_for('static',filename='images/gallery100.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+            </div>
+            <div class="col-3">
+                <img src="{{url_for('static',filename='images/gallery122.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <img src="{{url_for('static',filename='images/gallery111.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+            </div>
+            <div class="col-3">
+                <img src="{{url_for('static',filename='images/gallery88.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+            </div>
+            <div class="col-3">
+                <img src="{{url_for('static',filename='images/gallery77.jpg')}}" class="img-fluid rounded-circle img-thumbnail">
+            </div>
+        </div>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{url_for('static',filename='images/pro100.jpg')}}" class="d-block w-100" alt="pic">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{url_for('static',filename='images/pro44.jpg')}}" class="d-block w-100" alt="pic">
+                </div>
+                <div class="carousel-item">
+                     <img src="{{url_for('static',filename='images/pro122.jpg')}}" class="d-block w-100" alt="pic">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+{% endblock %}

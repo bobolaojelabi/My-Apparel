@@ -1,0 +1,30 @@
+{% extends 'admin/dashboard.html'%}
+{% block nav%}
+<li class="breadcrumb-item active"><a href="/admin/orders/" class="text-decoration-none text-dark">Orders</a></li>
+<li class="breadcrumb-item active">Edit</li>
+{% endblock %}
+{% block content%}
+<div class="row mt-5 p-5">
+<div class="col-md-7 bg-white p-4 text-center">
+    <h4 class="mb-5">Edit Order Status</h4>
+    <form method="post" action="">
+        <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+        <p>
+            <input type="hidden" name="orderid" value="{{theorder.order_id}}">
+            <select name="status" class=" form-select">
+                <option value="pending">Pending</option>
+                <option value="not processed">Not Processed</option>
+                <option value="processing">Processing</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="completed">Completed</option>
+            </select>
+
+        </p>
+        <p>
+            <button class="btn btn-outline-success col-md-3">Submit</button>
+        </p>
+    </form>
+</div>
+
+</div>
+{% endblock%}

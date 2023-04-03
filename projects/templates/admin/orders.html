@@ -1,0 +1,310 @@
+{% extends 'admin/dashboard.html'%}
+{% block nav%}
+<li class="breadcrumb-item active">Orders</li>
+{% endblock %}
+{% block content%}
+<div class="row my-5">
+    <div class="col-12 bg-light p-4">
+      <h4 class="mb-5">Order History</h4>
+        <ul class="nav nav-tabs nav-tabs-bordered">
+
+          <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#all_order">All Orders</button>
+          </li>
+
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#pending">Pending</button>
+          </li>
+
+
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#processing">Processing</button>
+          </li>
+
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#completed">Completed</button>
+          </li>
+
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancelled">Cancelled</button>
+          </li>
+
+        </ul>
+        <div class="tab-content pt-2">
+
+              <!-- all order-->
+          <div class="tab-pane fade show active pt-3 table-responsive" id="all_order">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>User</th>
+                    <th>Reciever Name</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+                    <th>Ref No</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th colspan="2">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order,pay in allorder: %}
+                  <tr>
+                    <th>{{ loop.index}}</th>
+                    <td>{{ order.user_deets.user_fname}} {{ order.user_deets.user_lname}}</td>
+                    <td>{{ order.order_name}}</td>
+                    <td>{{ order.order_shipaddress}}, {{ order.order_shipcity}}, {{order.state_deets.state_name}}</td>
+                    <td>&#8358 {{"{0:,.2f}".format(order.order_amt)}}</td>
+                    <td>
+                        {% if order.order_status== 'completed': %}
+                          <span class="badge bg-success">{{order.order_status}}</span>
+                      {% elif order.order_status== 'processing': %}
+                          <span class="badge bg-warning">{{order.order_status}}</span> 
+                        {% elif order.order_status== 'pending': %}
+                          <span class="badge bg-secondary">{{order.order_status}}</span> 
+                      {% else: %}   
+                        <span class="badge bg-danger">{{order.order_status}}</span>                                
+                      {% endif %}
+                    </td>
+                    <td>{{ pay.pay_status}}</td>
+                    <td>{{ order.order_refno}}</td>
+                    <td>{{ order.order_date}}</td>
+                    <td><a href="{{url_for('order_details',id=order.order_id)}}" class="btn btn-outline-primary">Details</a></td>
+                    <td><a href=" {{url_for('edit_order',id=order.order_id)}}" class="btn btn-outline-danger">Edit</a></td>
+                  </tr>
+                {% endfor%}
+                </tbody>
+              </table>
+          </div>
+
+              <!-- pending order-->
+          <div class="tab-pane fade pt-3 table-responsive" id="pending">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>User</th>
+                    <th>Reciever Name</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+                    <th>Ref No</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th colspan="2">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order,pay in pend_order: %}
+                  <tr>
+                    <th>{{ loop.index}}</th>
+                    <td>{{ order.user_deets.user_fname}} {{ order.user_deets.user_lname}}</td>
+                    <td>{{ order.order_name}}</td>
+                    <td>{{ order.order_shipaddress}}, {{ order.order_shipcity}}, {{order.state_deets.state_name}}</td>
+                    <td>&#8358 {{"{0:,.2f}".format(order.order_amt)}}</td>
+                    <td><span class="badge bg-secondary">{{order.order_status}}</span></td>
+                    <td>{{pay.pay_status}}</td>
+                    <td>{{ order.order_refno}}</td>
+                    <td>{{ order.order_date}}</td>
+                    <td><a href="{{url_for('order_details',id=order.order_id)}}" class="btn btn-outline-primary">Details</a></td>
+                    <td><a href=" {{url_for('edit_order',id=order.order_id)}}" class="btn btn-outline-danger">Edit</a></td>
+                  </tr>
+                {% endfor%}
+                </tbody>
+              </table>
+          </div>
+
+            <!-- processing order -->
+          <div class="tab-pane fade pt-3 table-responsive" id="processing">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>User</th>
+                    <th>Reciever Name</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+                    <th>Ref No</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order,pay in process_order: %}
+                  <tr>
+                    <th>{{ loop.index}}</th>
+                    <td>{{ order.user_deets.user_fname}} {{ order.user_deets.user_lname}}</td>
+                    <td>{{ order.order_name}}</td>
+                    <td>{{ order.order_shipaddress}}, {{ order.order_shipcity}}, {{order.state_deets.state_name}}</td>
+                    <td>&#8358 {{"{0:,.2f}".format(order.order_amt)}}</td>
+                    <td><span class="badge bg-warning">{{order.order_status}}</span></td>
+                    <td>{{ pay.pay_status}}</td>
+                    <td>{{ order.order_refno}}</td>
+                    <td>{{ order.order_date}}</td>
+                    <td><a href="{{url_for('order_details',id=order.order_id)}}" class="btn btn-outline-primary">Details</a></td>
+                    <td><a href=" {{url_for('edit_order',id=order.order_id)}}" class="btn btn-outline-danger">Edit</a></td>
+                  </tr>
+                {% endfor%}
+                </tbody>
+              </table>
+          </div>
+
+           <!-- confirmed order -->
+          <div class="tab-pane fade pt-3 table-responsive" id="completed">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>User</th>
+                    <th>Reciever Name</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+                    <th>Ref No</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order,pay in complete_order: %}
+                  <tr>
+                    <th>{{ loop.index}}</th>
+                    <td>{{ order.user_deets.user_fname}} {{ order.user_deets.user_lname}}</td>
+                    <td>{{ order.order_name}}</td>
+                    <td>{{ order.order_shipaddress}}, {{ order.order_shipcity}}, {{order.state_deets.state_name}}</td>
+                    <td>&#8358 {{"{0:,.2f}".format(order.order_amt)}}</td>
+                    <td><span class="badge bg-success">{{order.order_status}}</span></td>
+                    <td>{{pay.pay_status}}</td>
+                    <td>{{ order.order_refno}}</td>
+                    <td>{{ order.order_date}}</td>
+                    <td><a href="{{url_for('order_details',id=order.order_id)}}" class="btn btn-outline-primary">Details</a></td>
+                    <td><a href=" {{url_for('edit_order',id=order.order_id)}}" class="btn btn-outline-danger">Edit</a></td>
+                  </tr>
+                {% endfor%}
+                </tbody>
+              </table>
+          </div>
+
+            <!-- cacelled order -->
+          <div class="tab-pane fade pt-3 table-responsive" id="cancelled">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>User</th>
+                    <th>Reciever Name</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Status</th>
+                    <th>Ref No</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order,pay in cancel_order: %}
+                  <tr>
+                    <th>{{ loop.index}}</th>
+                    <td>{{ order.user_deets.user_fname}} {{ order.user_deets.user_lname}}</td>
+                    <td>{{ order.order_name}}</td>
+                    <td>{{ order.order_shipaddress}}, {{ order.order_shipcity}}, {{order.state_deets.state_name}}</td>
+                    <td>&#8358 {{"{0:,.2f}".format(order.order_amt)}}</td>
+                    <td><span class="badge bg-danger">{{order.order_status}}</span></td>
+                    <td>{{pay.pay_status}}</td>
+                    <td>{{ order.order_refno}}</td>
+                    <td>{{ order.order_date}}</td>
+                    <td><a href="{{url_for('order_details',id=order.order_id)}}" class="btn btn-outline-primary">Details</a></td>
+                    <td><a href=" {{url_for('edit_order',id=order.order_id)}}" class="btn btn-outline-danger">Edit</a></td>
+                  </tr>
+                {% endfor%}
+                </tbody>
+              </table>
+          </div>
+
+        </div><!-- End Bordered Tabs -->
+      </div>
+</div>
+{% endblock%}
+{% block modal%}
+    <!-- Modal -->
+<div class="modal fade" id="history" tabindex="-1" aria-labelledby="historyLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historyLabel">
+          <h5>Order Reference No:<span id="ref"></span></h5>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody id="tablebody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block customjs %}
+<script type="text/javascript"> 
+  $(document).ready(function(){
+
+  //triggered when modal is about to be shown
+  $('#history').on('show.bs.modal', function(e) {
+  
+      //get data-id(order_id) attribute of the clicked element
+      var orderid = $(e.relatedTarget).data('user');
+      var data2send ={"order":orderid}
+      //make an ajax call to receive an array based on orderid, that is you can now pass the orderid to an ajax. let's say the ajax returns t     
+      $.ajax({
+        url:"/admin/history/",
+        data:data2send,
+        success:function(rsp){
+           var rows = '';
+             $.each(rsp, function(index, item) {
+               rows += '<tr>' +
+                 '<td>' + item.name + '</td>' +
+                 '<td>' + item.price + '</td>' +
+                 '<td>' + item.qty + '</td>' +
+                 '</tr>';
+                 $('#ref').text(item.refno);
+             });
+             $('#tablebody').html(rows);
+        },
+        error:function(e){
+          console.log(e)
+        }
+      })
+      //$(e.currentTarget).find('.modal-body').html(t); //displays t inside the div with class modal-body
+      //$(e.currentTarget).find('.modal-title').html("Details for User"+ userid); //displays this in the div with class modal-title
+  });
+  
+    })//document closing
+  </script>
+{% endblock %}

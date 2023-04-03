@@ -1,0 +1,33 @@
+{% extends 'admin/dashboard.html'%}
+{% block nav%}
+<li class="breadcrumb-item active">Customer</a></li>
+{% endblock %}
+{% block content%}
+<div class="row mt-5">
+    <div class="col-11 table-responsive bg-white mx-auto">
+        <h4 class="mx-auto mb-5">Users</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cust in customers%}
+                <tr>
+                    <td>{{ loop.index}}</td>
+                    <td>{{ cust.user_fname }} {{cust.user_lname}}</td>
+                    <td>{{ cust.user_email }}</td>
+                    <td>{{ cust.user_phone }}</td>
+                    <td><a href="{{url_for('delete_product',id=cust.user_id)}}" class="btn btn-outline-danger" onclick="return confirm('Do you really want to delete')">Delete</i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

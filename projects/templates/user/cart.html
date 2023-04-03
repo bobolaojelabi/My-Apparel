@@ -1,0 +1,58 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-Cart</title>
+{% endblock %}
+
+{% block content%}
+<div class="container-fluid mt-5">
+    <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover; height:200px">
+      <div style="background-color:rgba(0,0,0,0.9); height:200px">
+          <div class="px-4 py-5 my-5 text-center text-warning">
+              <h1 class="display-5 fw-bold"><i>My Apparel/cart</i></h1>
+             
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+  <div class="container" style="min-height: 360px;">
+    <div class="row px-5 mt-5">
+      <div class="col-12 table-responsive">
+        <table class="table table-striped align-middle">
+          <thead style="background: linear-gradient(to right, rgb(109,59,125), rgb(255,133,253))">
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Product</th>
+              <th>price</th>
+              <th>qantity</th>
+              <th>subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in mycart%}
+              <tr>
+                <td><p><a href="{{url_for('delete_cart',id=item.cart_id)}}" class="text-danger" onclick="return confirm('Do you really want to delete')"><i class="fa-solid fa-trash"></i></a></p></td>
+                <td>
+                  <span class="me-2"><img src="{{url_for('static',filename='/uploads/'+ item.cart_pix)}}" alt="..." width="70px" height="70px" style="border: 1px solid rgb(143,59,158);"></span></td>
+                  <td>{{ item.the_product.product_name}}</td>
+                <td>&#8358 {{"{0:,.2f}".format(item.cart_price) }}</td>
+                <td>
+                  {{item.cart_qty}}
+                </td>
+                <td>&#8358 {{"{0:,.2f}".format(item.cart_total)}}</td>
+              </tr>
+            {% endfor%}
+          </tbody>
+        </table>
+
+      </div>
+      <div class="col-md-4">
+        <a href="/myapparel/checkout/" class="btn mybtn">PROCEED TO CHECKOUT</a>
+      </div>
+    </div>
+
+
+  </div>
+  {% endblock %}

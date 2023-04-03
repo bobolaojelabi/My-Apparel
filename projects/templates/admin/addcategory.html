@@ -1,0 +1,32 @@
+{% extends 'admin/dashboard.html'%}
+{% block nav%}
+<li class="breadcrumb-item active"><a href="/admin/category/" class="text-decoration-none text-dark">Categories</a></li>
+<li class="breadcrumb-item active">add</li>
+{% endblock %}
+{% block content%}
+<div class="row mt-5 p-5">
+    <div class="col-md-8 bg-white p-4 mx-auto text-center">
+        {% with m=get_flashed_messages(with_categories=True) %}
+                {% if m: %}
+                    {% for cat,msg in m: %}
+                        {% if cat == "error": %}
+                            <div class='text-danger'> {{ msg|safe }}</div>
+                        {% else: %}
+                            <div class='text-success'> {{ msg|safe }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        <form class="row g-3" method="post" action="">
+            <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+            <div class="col-md-6 mx-auto">
+              <label for="cat" class="form-label"><b>category</b></label>
+              <input type="text" class="form-control" id="cat" name="cat">
+            </div>
+            <div class="col-12 mb-3 mx-auto">
+              <button type="submit" class="btn btn-outline-success col-2">SUBMIT</button>
+            </div>
+          </form>
+    </div>
+</div>
+{% endblock %}

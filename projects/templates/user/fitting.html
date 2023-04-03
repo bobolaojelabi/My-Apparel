@@ -1,0 +1,297 @@
+{% extends "user/layout.html" %}
+{% block title %}
+    <title>My Apparel-Fiitting</title>
+{% endblock %}
+{% block content %}
+        <div class="container-fluid">
+            <div class="row" style="background-image:url('/static/images/shop222.jpg'); background-image:cover;min-height:650px">
+                <div class="p-5" style="background-color:rgba(0,0,0,0.8); min-height:650px">
+
+            <div class="row bg-white p-3 mt-5">
+                <div class="col-12 pt-3 mb-2 fst-italic bg-black"> 
+                    <h5><marquee> click on the input fields to enter the corresponding measurement and also can check the description of each to get the right measurements</marquee></h5>
+    
+                </div>     
+            </div>
+            <div class="row bg-white">
+                <div class=" col-md-7 mx-auto">
+                    <h5 class="mb-3 text-center"><span class="bordBottom fs-4 fw-bold">Things to do</span></h5>
+                        <ul>
+                            <li>Fill the measurement form above and remember to click the submit button so we have your record.</li>
+                            <li>Use the diagram illustration to make sure you are taking the right measurement of each part</li>
+                            <li>Upon submission,reach out to us on
+                                <ul>
+                                    <li>whatsapp: <a href="https://wa.me/2347032047442">07032047442</a></li>
+                                    <li>instagram: <a href="instagram.com/exclusive0.6">exclusive0.6</a></li>
+                                </ul>
+                                so has to have direct contact with us and speak more about your style,delivery date and address.
+                            </li>
+                        </ul>
+                </div>
+                <div class="b-example-divider mb-3 mt-3"></div>
+            </div> 
+            <div class="row bg-white p-3">
+            <div class="col-md text-center p-4" style="background-color: rgb(237,206,243);"><!--col 1 opening -->
+                <div class="row"><!--row 1 opening-->
+                    <div class="col">
+                        <h6><b>BUST</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/bust1.jpg')}}" alt="pic">
+                        <p><i>360° measurement at the widest point of your bust with your arms opened.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>OFF-SHOULDER</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/bust1.jpg')}}" alt="pic">
+                        <p><i>From shoulder seam to bust.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>SHOULDER-UNDERBUST</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/armhole.gif')}}" alt="pic">
+                        <p><i>Measure around the armhole.</i></p>
+                    </div>
+                    
+                </div>
+                <div class="row"><!--row 3 opening-->
+                    <div class="col">
+                        <h6><b>UNDER-BUST</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/under_bust1.jpg')}}" alt="pic">
+                        <p><i>360° measurement where your bra band sits, right underneath your bust.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>SHOULDER-NIPPLE</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/should_niple1.jpg')}}" alt="pic">
+                        <p><i>Measure a straight vertical line from the top of your shoulder to nipple.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>NIPPLE-NIPPLE</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/niple_niple1.jpg')}}" alt="pic">
+                        <p><i>Measure the distance between your nipples</i></p>
+                    </div>
+                    
+                </div>
+                <div class="row"><!--row 3 opening-->
+                    <div class="col">
+                        <h6><b>BACK</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/back_width1.jpg')}}" alt="pic">
+                        <p><i>Measure from one shoulder bone to the other across the back of your neck.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>Top-Length</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/back_width1.jpg')}}" alt="pic">
+                        <p><i>From shoulder seam to bottom.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>TOP-HALF/LENGTH</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/top_halflength1.jpg')}}" alt="pic">
+                        <p><i>Measure from the high point of your shoulder to your upper waist.</i></p>
+                    </div>
+                    
+                </div>
+                <div class="row"><!--row 3 opening-->
+                    <div class="col">
+                        <h6><b>TOP-WAIST</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/top_waist1.jpg')}}" alt="pic">
+                        <p><i>Few centimeters above your belle button,where your elbow bends is your natural waist.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>SLEEVE-LENGTH</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/sleeve_length1.jpg')}}" alt="pic">
+                        <p><i>Measure from your shoulder bone to your wrist bone/or the length which you want you sleeve to reach,Let your arm hang down naturally.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>SLEEVE-HOLE</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/top_halflength1.jpg')}}" alt="pic">
+                        <p><i>Measure width around cuff.</i></p>
+                    </div>
+                    
+                </div>
+                <div class="row"><!--row 3 opening-->
+                    <div class="col">
+                        <h6><b>HIP</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/hip1.jpg')}}" alt="pic">
+                        <p><i>Just below you waist around your pelvis and upper thigh bone on each side of the body.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>SKIRT-LENGTH</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/sleeve_length1.jpg')}}" alt="pic">
+                        <p><i>Measure down from your natural waist to the top of your knee/the end to where you want your skirt to reach.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>SKIRT-WAIST</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/skirt_waist1.jpg')}}" alt="pic">
+                        <p><i>Measure below your waist, just below your belle button and above your hip.</i></p>
+                    </div>
+                    
+                </div>
+                <div class="row"><!--row 3 opening-->
+                    <div class="col">
+                        <h6><b>TROUSER-LENGTH</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/tros_length1.jpg')}}" alt="pic">
+                        <p><i>Measure from your waist to your ankle.</i></p>
+                    </div>
+                    <div class="col">
+                        <h6><b>DRESS-LENGTH</b></h6>
+                        <img src="{{url_for('static',filename='images/measure/dress_length1.jpg')}}" alt="pic">
+                        <p><i>Stand tall as you measure the front of your body from the top of your shoulder to floor/or to the length you desire for your dress.</i></p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="col-md" style="margin-top: 150px;"><!--col 2 opening-->
+          
+                {% with m=get_flashed_messages(with_categories=True) %}
+                {% if m: %}
+                    {% for cat,msg in m: %}
+                        {% if cat == "error": %}
+                            <div class='alert alert-danger'> {{ msg|safe }}</div>
+                        {% else: %}
+                            <div class='alert alert-success'> {{ msg|safe }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+                
+                <form class="border border-5 p-4 mb-4" method="post" action="#">
+                    <h5 class="mb-3"><span class="bordBottom fs-4 fw-bold">YOUR MEASURE</span></h5>
+                    <h6 class="mb-3 text-muted">If you are an old user,just confrim your measure or update it then click on the submit button</h6>
+                    <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
+                <div class="row"><!--row 1 open-->
+                    
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="bust" value="{{measure.bust}}" name="bust">
+                            <label for="bust">Bust
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm mb-3">
+                        <div class="form-floating">
+                            <input type="number" class="form-control measureinput" id="off" value="{{measure.off_shoulderdim}}" name="off">
+                            <label for="off">Off-Shoulder</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="shoubust" value="{{measure.shoulder_underbust}}" name="shoubust">
+                            <label for="shoubust">Shoulder-Under/bust</label>
+                        </div>
+                    </div>
+                    
+                </div><!--row 1 close-->
+
+                <div class="row"><!--row 1 open-->
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="under" value="{{measure.underbust_circum}}"  name="under">
+                            <label for="under">Under-Bust</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="shounip" value="{{measure.shoulder_nipple}}" name="shounip">
+                            <label for="shounip">Shoulder-Nipple</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="nipple" value="{{measure.nipple_nipple}}" name="nipple">
+                            <label for="nipple">Nipple-Nipple</label>
+                        </div>
+                    </div>
+                </div><!--row 1 close-->
+
+                <div class="row"><!--row 2 open-->
+                    
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="back" value="{{measure.back}}" name="back">
+                            <label for="back">Back</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="toplen" value="{{measure.top_length}}" name="toplen">
+                            <label for="toplen">Top-Length</label>
+                        </div>
+                    </div>
+                    <div class="col-sm mb-3">
+                        <div class="form-floating">
+                            <input type="number" class="form-control measureinput" id="tophalf" value="{{measure.top_halflength}}" name="tophalf">
+                            <label for="tophalf">Top-Halflenght</label>
+                        </div>
+                    </div>
+                    
+                </div><!--row 2 close-->
+                <div class="row"><!--row 3 open-->
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                                <input type="number" class="form-control measureinput" id="topw" value="{{measure.top_waist}}" name="topw">
+                                <label for="topw">Top-Waist</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="sleeve" value="{{measure.sleeve_length}}" name="sleeve">
+                            <label for="sleeve">Sleeve-Length</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="hole" value="{{measure.sleeve_hole}}" name="hole">
+                            <label for="hole">Sleeve-Hole</label>
+                        </div>
+                    </div>
+                </div><!--row 3 close-->  
+                <div class="row"><!--row 4 open-->
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                                <input type="number" class="form-control measureinput" id="hip" value="{{measure.hips}}" name="hip">
+                                <label for="hip">Hip</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="skirtl" value="{{measure.skirt_length}}" name="skirtlen">
+                            <label for="skirtl">Skirt-Length</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="skirtw" value="{{measure.skirt_waist}}" name="skirtw">
+                            <label for="skirtw">Skirt-Waist</label>
+                        </div>
+                    </div>
+                </div><!--row 4 close-->  
+                <div class="row"><!--row 5 open-->
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                                <input type="number" class="form-control measureinput" id="trouser" value="{{measure.trouser_length}}" name="trouserlen">
+                                <label for="trouser">Trouser Length</label>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control measureinput" id="dress" value="{{measure.dress_length}}" name="dresslen">
+                            <label for="dress">Dress Length</label>
+                        </div>
+                    </div>
+                </div><!--row 5 close-->  
+                <div class="row">
+                    <button class="btn mybtn" name="measure" id="measure">Submit</button>
+                </div>
+            </form>
+            <div class="b-example-divider"></div>
+ 
+                <div class="row">
+                        <div class="col ms-3 mt-5 text-center bordBottom">
+                            <h5 class="animate__animated animate__bounce animate__infinite infinite">
+                                STYLING YOU REMAINS THE GOAL FOR US HERE AT EXCLUSIVE 06
+                            </h5>
+                        </div>
+                </div>             
+            </div><!--col 2 closing-->
+            </div><!--WOMEN section closing-->
+                </div>
+            </div>
+        </div>
+{% endblock %}
